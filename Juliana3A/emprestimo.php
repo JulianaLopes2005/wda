@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
+    <title>Empréstimos</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -19,30 +19,29 @@
             <div class="navbar-nav">
               <a class="nav-link" href="usuarios.php">Usuários</a>
 			  <a class="nav-link" href="livros.php">Livros</a>
-			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
+              <a class="nav-link" href="emprestimo.php">Empréstimos</a>
             </div>
           </div>
         </div>
       </nav>
 
 <div class="container">
-<center><h1>Lista de Usuários</h1></center>
+<center><h1>Lista de Empréstimos</h1></center>
 	  <br>
-	  <a href="adicionar.php" type="button" class="btn btn-success">Adicionar Usuário</a><br><br>
-	<table class="table">
+      <table class= "table">
 		<tr>
 			<th>ID</th>
 			<th>Nome</th>
-			<th>Email</th>
-			<th>Celular</th>
-			<th>Endereço</th>
-			<th>CPF</th>
+			<th>Autor</th>
+			<th>Editora</th>
+			<th>Data de Lançamento</th>
+			<th>Quantidade em Estoque</th>
 			<th></th>
 		</tr>
 		<?php
 			include 'conexao.php'; 
 			// Consultar usuários
-			$sql = "SELECT * FROM usuarios";
+			$sql = "SELECT * FROM emprestimos";
 			$result = mysqli_query($conn, $sql);
 			// Exibir resultados
 			//Se tiver mais de um registro
@@ -50,17 +49,15 @@
 				while ($row = mysqli_fetch_assoc($result)) {
 					echo "<tr>";
 					echo "<td>".$row["id"]."</td>";
-					echo "<td>".$row["nome"]."</td>";
-					echo "<td>".$row["email"]."</td>";
-					echo "<td>".$row["celular"]."</td>";
-					echo "<td>".$row["endereco"]."</td>";
-					echo "<td>".$row["cpf"]."</td>";
+					echo "<td>".$row["livro_id"]."</td>";
+					echo "<td>".$row["livro_nome"]."</td>";
+					echo "<td>".$row["usuario_id"]."</td>";
+					echo "<td>".$row["usuario_nome"]."</td>";
+					echo "<td>".$row["prazo_entrega"]."</td>";
 
-					echo "<td><a href='editar.php?id=".$row["id"]."' class='btn btn-warning'>Editar</a> | <a href='excluir.php?id=".$row["id"]."' class='btn btn-danger'>Excluir</a></td>";
-					echo "</tr>";
 				}
 			} else {
-				echo "<tr><td colspan='4'>Nenhum usuário encontrado.</td></tr>";
+				echo "<tr><td colspan='4'>Nenhum emprestimo encontrado.</td></tr>";
 			}
 			// Fechar conexão
 			mysqli_close($conn);
