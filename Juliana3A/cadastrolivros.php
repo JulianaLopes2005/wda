@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
+
+
 	<div class="row">
 		<div class="container col-sm-6">
 			<div class="panel panel-default">
@@ -22,9 +24,25 @@
     						<label for="autor">Autor:</label>
     						<input type="text" name="autor" class="form-control" required>
                             <br>
+						
     						<label for="editora">Editora:</label>
-    						<input type="text" name="editora" class="form-control" required>
-                            <br>
+        					<select name="editora" id="editora" required>
+            				<option value="">Selecione a Editora</option>
+							<?php
+							// Realiza a conexão com o banco de dados
+							include('conexao.php');
+
+							// Busca as editoras cadastradas
+							$query = "SELECT * FROM editora";
+							$resultado = mysqli_query($conn, $query);
+
+							// Exibe as opções do select com base nas editoras encontradas
+							while ($editora = mysqli_fetch_assoc($resultado)) {
+								echo '<option value="' . $editora['nome_editora'] . '">' . $editora['nome_editora'] . '</option>';
+							}
+							?>
+							</select><br><br>
+
                             <label for="datalanc">Data de lançamento:</label>
     						<input type="date" name="datalanc" class="form-control" required>
                             <br>
@@ -35,6 +53,7 @@
     						<input type="submit" name="btn" value="Cadastrar" class="btn btn-success">
 
    						</form>
+
 				</div>
 			</div>
 		</div>			

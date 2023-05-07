@@ -20,6 +20,7 @@
               <a class="nav-link" href="usuarios.php">Usuários</a>
 			  <a class="nav-link" href="livros.php">Livros</a>
               <a class="nav-link" href="emprestimo.php">Empréstimos</a>
+			  <a class="nav-link" href="editora.php">Editoras</a>
             </div>
           </div>
         </div>
@@ -31,11 +32,11 @@
       <table class= "table">
 		<tr>
 			<th>ID</th>
-			<th>Nome</th>
-			<th>Autor</th>
-			<th>Editora</th>
-			<th>Data de Lançamento</th>
-			<th>Quantidade em Estoque</th>
+			<th>Livro ID</th>
+			<th>Nome do Livro</th>
+			<th>ID do Usuário</th>
+			<th>Nome do Usuário</th>
+			<th>Prazo de Entrega</th>
 			<th></th>
 		</tr>
 		<?php
