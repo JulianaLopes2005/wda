@@ -55,6 +55,10 @@
 					echo "<td>".$row["usuario_id"]."</td>";
 					echo "<td>".$row["usuario_nome"]."</td>";
 					echo "<td>".$row["prazo_entrega"]."</td>";
+					//MODIFICAR
+					echo "<td><a href='devolucaolivro.php?id=".$row["id"]."' class='btn btn-info'>Devolução</a></td>";
+					echo "</tr>";
+
 
 				}
 			} else {
@@ -68,3 +72,9 @@
 	</div>		
 </body>
 </html>
+
+
+
+
+
+
