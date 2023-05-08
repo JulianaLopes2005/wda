@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Maio-2023 às 01:55
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
+-- Tempo de geração: 08-Maio-2023 às 21:46
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,8 @@ CREATE TABLE `editora` (
 INSERT INTO `editora` (`id`, `nome_editora`, `email_editora`, `telefone`, `site_editora`) VALUES
 (3, 'Pirulito POP', 'pirulitopop1234@gmail.com', '8734662341', 'pirulitopopforever'),
 (4, 'Arqueiro', 'arqueirooficial@gmail.com', '8734662341', 'arqueiroedt'),
-(5, 'lopes', 'loiyt@gmail.com', '8734662341', 'rtyu');
+(5, 'lopes', 'loiyt@gmail.com', '8734662341', 'rtyu'),
+(0, 'cgfbhnsvd', 'hdbcfh@gmail.com', '5gvdasv', 'nuuinm.com');
 
 -- --------------------------------------------------------
 
@@ -56,17 +57,18 @@ CREATE TABLE `emprestimos` (
   `livro_nome` text NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `usuario_nome` text NOT NULL,
-  `prazo_entrega` date NOT NULL
+  `prazo_entrega` date NOT NULL,
+  `data_emprestimo` date NOT NULL,
+  `devolvido` int(11) NOT NULL,
+  `cpf_usuario` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `emprestimos`
 --
 
-INSERT INTO `emprestimos` (`id`, `livro_id`, `livro_nome`, `usuario_id`, `usuario_nome`, `prazo_entrega`) VALUES
-(3, 2, 'Trono de vidro', 1, 'Ledro Pucas', '2023-05-04'),
-(4, 2, 'Trono de vidro', 2, 'Juliana Ramos Lopes', '2023-05-10'),
-(5, 5, 'telecom', 2, 'Juliana Ramos Lopes', '2023-05-30');
+INSERT INTO `emprestimos` (`id`, `livro_id`, `livro_nome`, `usuario_id`, `usuario_nome`, `prazo_entrega`, `data_emprestimo`, `devolvido`, `cpf_usuario`) VALUES
+(12, 1, 'Corte de espinhos e rosas', 2, 'Juliana', '2023-05-11', '2023-05-08', 0, '784456987446');
 
 -- --------------------------------------------------------
 
@@ -88,9 +90,8 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`id`, `nome`, `autor`, `editora`, `datalanc`, `estoque`) VALUES
-(2, 'Trono de vidro', 'Sarah J. Mass', 'Galera', '2019-11-21', 8),
-(3, 'sol e a lua', 'juju', 'pirulito POP', '2022-01-03', 2),
-(5, 'telecom', 'EU', 'Pirulito POP', '2023-05-01', 1);
+(1, 'Corte de espinhos e rosas', 'Sarah J.M', 'Galera', '2018-05-10', 7),
+(3, 'olhos de fogo', 'to nem ai', 'lopes', '2023-05-01', 3);
 
 -- --------------------------------------------------------
 
@@ -112,18 +113,14 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `celular`, `endereco`, `cpf`) VALUES
-(1, 'Ledro Pucas', 'leeedro@gmail.com', '234567890456', 'casa 400 rua 66', '35623222338236'),
-(2, 'Juliana Ramos Lopes', 'ju@gmail.com', '345698761237', 'casa 778 nº 22', '3562378378236');
+(2, 'Juliana', 'pirulitopop123@gmail.com', '944441534', 'vcrb fcb ,fcb ,f f,cc ,f', '784456987446'),
+(3, 'Paulo Cleiton Rasta', 'pirulitopop123@gmail.com', '944441534', 'vcrb fcb ,fcb ,f f,cc ,f', '784456987446'),
+(4, 'Julikina', 'pirulitopop123@gmail.com', '944441534', 'vcrb fcb ,fcb ,f f,cc ,f', '784456987446'),
+(5, 'Carlos de Carlos', 'Cunha@gmail.com', '2345678', 'vcrb fcb ,fcb ,f f,cc ,f', '784456987446');
 
 --
 -- Índices para tabelas despejadas
 --
-
---
--- Índices para tabela `editora`
---
-ALTER TABLE `editora`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `emprestimos`
@@ -148,28 +145,22 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de tabela `editora`
---
-ALTER TABLE `editora`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

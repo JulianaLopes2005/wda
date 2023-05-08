@@ -12,12 +12,14 @@ $livro_result = mysqli_query($conn, $livro_query);
 $livro_nome = mysqli_fetch_array($livro_result)['nome'];
 
 // Recupera o nome do usuário correspondente ao ID
-$usuario_query = "SELECT nome FROM usuarios WHERE id = $usuario_id";
+$usuario_query = "SELECT nome, cpf FROM usuarios WHERE id = $usuario_id";
 $usuario_result = mysqli_query($conn, $usuario_query);
-$usuario_nome = mysqli_fetch_array($usuario_result)['nome'];
+$usuario_data = mysqli_fetch_array($usuario_result);
+$usuario_nome = $usuario_data['nome'];
+$cpf_usuario = $usuario_data['cpf'];
 
 // Insere os dados na tabela de empréstimos
-$insert_query = "INSERT INTO emprestimos (livro_id, livro_nome, usuario_id, usuario_nome, prazo_entrega) VALUES ($livro_id, '$livro_nome', $usuario_id, '$usuario_nome', '$prazo_entrega')";
+$insert_query = "INSERT INTO emprestimos (livro_id, livro_nome, usuario_id, usuario_nome, data_emprestimo, cpf_usuario, prazo_entrega) VALUES ($livro_id, '$livro_nome', $usuario_id, '$usuario_nome', CURDATE(), '$cpf_usuario', '$prazo_entrega')";
 mysqli_query($conn, $insert_query);
 
 // Atualiza a quantidade em estoque do livro
