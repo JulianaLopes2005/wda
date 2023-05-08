@@ -67,5 +67,21 @@
 		}
 	?>
 
+<script>
+			const dataDevolucaoInput = document.getElementById('prazo_entrega');
+			const prazoDias = 30; // Prazo de devolução em dias
+
+		dataDevolucaoInput.addEventListener('change', function() {
+		const dataDevolucao = new Date(this.value);
+		const dataLimite = new Date();
+		dataLimite.setDate(dataLimite.getDate() + prazoDias);
+
+		if (dataDevolucao > dataLimite) {
+			alert('Atenção, escolha um prazo de até 30 dias!');
+			this.value = ''; // Limpa o campo de data
+		}
+		});
+</script>
+
 </body>
 </html>

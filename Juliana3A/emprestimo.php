@@ -21,14 +21,16 @@
 			  <a class="nav-link" href="livros.php">Livros</a>
               <a class="nav-link" href="emprestimo.php">Empréstimos</a>
 			  <a class="nav-link" href="editora.php">Editoras</a>
+			  <a class="nav-link" href="atrasos.php">Atrasos</a>
             </div>
           </div>
         </div>
       </nav>
 
 <div class="container">
+
 <center><h1>Lista de Empréstimos</h1></center>
-	  <br>
+<a href="pesquisaemp.php" type="button" class="btn btn-success">Pesquisar empréstimos</a><br><br>
       <table class= "table">
 		<tr>
 			<th>ID</th>
@@ -55,7 +57,6 @@
 					echo "<td>".$row["usuario_id"]."</td>";
 					echo "<td>".$row["usuario_nome"]."</td>";
 					echo "<td>".$row["prazo_entrega"]."</td>";
-					//MODIFICAR
 					echo "<td><a href='devolucaolivro.php?id=".$row["id"]."' class='btn btn-info'>Devolução</a></td>";
 					echo "</tr>";
 

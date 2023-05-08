@@ -20,6 +20,7 @@
 			  <a class="nav-link" href="livros.php">Livros</a>
 			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
 			  <a class="nav-link" href="editora.php">Editoras</a>
+			  <a class="nav-link" href="atrasos.php">Atrasos</a>
             </div>
           </div>
         </div>
@@ -28,7 +29,6 @@
       <center><h1>Lista de Livros</h1></center><br><br>
 	<div class="container">
 	<a href="cadastrolivros.php" type="button" class="btn btn-success">Adicionar Livros</a><br><br>
-	<table class="table">
 	<table class="table">
 		<tr>
 			<th>ID</th>
