@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    // Se o usuário não estiver logado, redireciona para a página de login
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +33,7 @@
 			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
 			  <a class="nav-link" href="editora.php">Editoras</a>
 			  <a class="nav-link" href="atrasos.php">Atrasos</a>
+			  <a class="nav-link btn btn-light" href="logout.php">Sair</a>
             </div>
           </div>
         </div>
