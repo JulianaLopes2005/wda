@@ -6,15 +6,16 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
-        
+            background-image: url('fundo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }    
+
         .login-container {
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #ffd2cb;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -40,7 +41,7 @@
         .login-container input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
+            background-color: #ff81ff;
             color: #fff;
             border: none;
             border-radius: 3px;

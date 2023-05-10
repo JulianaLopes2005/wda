@@ -42,7 +42,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
         input[type="submit"] {
             padding: 10px 15px;
-            background-color: #fdcae1;
+            background-color: #ff81ff;
             color: #fff;
             font-size: 14px;
             border: none;
@@ -57,7 +57,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         th, td {
             padding: 8px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #ff81ff;
         }
 
         th {
@@ -66,23 +66,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Logo</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link" href="usuarios.php">Usuários</a>
-			  <a class="nav-link" href="livros.php">Livros</a>
-			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
-			  <a class="nav-link" href="editora.php">Editoras</a>
-              <a class="nav-link" href="atrasos.php">Atrasos</a>
-            </div>
-          </div>
-        </div>
-      </nav>
 	  <br><br>
     <center>
     <h1>Pesquisar Empréstimos</h1>

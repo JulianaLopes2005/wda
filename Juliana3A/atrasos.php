@@ -32,6 +32,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
               <a class="nav-link" href="emprestimo.php">Empréstimos</a>
 			  <a class="nav-link" href="editora.php">Editoras</a>
               <a class="nav-link" href="atrasos.php">Atrasos</a>
+              <a class="nav-link btn btn-light" href="dashboard.php" class="dashboard-button">Dashboard</a>
               <a class="nav-link btn btn-light" href="logout.php">Sair</a>
             </div>
           </div>
@@ -60,7 +61,7 @@ if(mysqli_num_rows($resultado_emprestimos) > 0) {
         echo "<td>".$row['usuario_nome']."</td>";
         echo "<td>".$row['data_emprestimo']."</td>";
         echo "<td>".$row['prazo_entrega']."</td>";
-        echo "<td><a href='devolver.php?id=".$row["id"]."'>Devolução</a></td>";
+        echo "<td><a href='devolucaolivro.php?id=".$row["id"]."' class='btn btn-info'>Devolução</a></td>";
         echo "</tr>";
     }
 
