@@ -20,7 +20,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-light">
+
+<nav class="navbar navbar-expand-lg "  style="background-color: #ffc0cb;">
+
+		<a class="navbar-brand" href="#">
+      		<img src="logotipo.png" alt="Bootstrap" width="90" height="72">
+    	</a>
+          
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">LocadoraDreams</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,8 +39,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
 			  <a class="nav-link" href="editora.php">Editoras</a>
 			  <a class="nav-link" href="atrasos.php">Atrasos</a>
-			  <a class="nav-link btn btn-light" href="dashboard.php" class="dashboard-button">Dashboard</a>
-			  <a class="nav-link btn btn-light" href="logout.php">Sair</a>
+			  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
+			  <a class="nav-link" href="logout.php">Sair</a>
             </div>
           </div>
         </div>

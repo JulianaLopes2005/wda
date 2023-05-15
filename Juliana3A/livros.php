@@ -19,7 +19,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
+
+<nav class="navbar navbar-expand-lg "  style="background-color: #ffc0cb;">
+
+		<a class="navbar-brand" href="#">
+      		<img src="logotipo.png" alt="Bootstrap" width="90" height="72">
+    	</a>
+          
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">LocadoraDreams</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,8 +38,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
 			  <a class="nav-link" href="editora.php">Editoras</a>
 			  <a class="nav-link" href="atrasos.php">Atrasos</a>
-			  <a class="nav-link btn btn-light" href="dashboard.php" class="dashboard-button">Dashboard</a>
-			  <a class="nav-link btn btn-light" href="logout.php">Sair</a>
+			  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
+			  <a class="nav-link " href="logout.php">Sair</a>
             </div>
           </div>
         </div>
@@ -70,8 +76,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 				echo "<td>".$row["editora"]."</td>";
 				echo "<td>".$row["datalanc"]."</td>";
 				echo "<td>".$row["estoque"]."</td>";
-				echo "<td><a href='emprestar.php?id=".$row["id"]."' class='btn btn-info'>Emprestar</a></td>";
+				echo "<td><a href='emprestar.php?id=".$row["id"]."' class='btn btn-info'>Emprestar</a> | <a href='editarlivros.php?id=".$row["id"]."' class='btn btn-warning'>Editar</a> | <a href='excluirlivro.php?id=".$row["id"]."' class='btn btn-danger'>Excluir</a></td>";
 				echo "</tr>";
+
+				
 			}
 
 			// Fecha a conexão com o banco de dados
