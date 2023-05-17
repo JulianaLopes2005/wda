@@ -15,7 +15,6 @@ if ($username === 'admin' && $password === 'master') {
     header('Location: usuarios.php');
     exit();
 } else {
-    // Autenticação falhou
     echo 'Usuário ou senha inválidos.';
 }
 ?>

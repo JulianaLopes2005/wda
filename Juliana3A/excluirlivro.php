@@ -29,11 +29,11 @@ if (isset($_GET['id'])) {
     $livroId = $_GET['id'];
 
     if (deleteLivro($livroId)) {
-        // Livro excluído com sucesso
+
         header('Location: livros.php');
         exit();
     } else {
-        // O livro possui empréstimos, exibe uma mensagem de erro
+       
         echo "Não é possível excluir o livro, pois existem empréstimos associados a ele.";
     }
 }
