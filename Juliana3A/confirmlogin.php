@@ -1,4 +1,5 @@
 <?php
+
 // Verifica as credenciais do usuário
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -16,5 +17,6 @@ if ($username === 'admin' && $password === 'master') {
     exit();
 } else {
     echo 'Usuário ou senha inválidos.';
+    header('Location: login.php');
 }
 ?>

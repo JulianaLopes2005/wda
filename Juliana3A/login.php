@@ -28,6 +28,7 @@
         .login-container label {
             display: block;
             margin-bottom: 8px;
+            font-weight: bold;
         }
         
         .login-container input[type="text"],
@@ -37,34 +38,62 @@
             border-radius: 3px;
             border: 1px solid #ccc;
         }
-        
-        .login-container input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #ff81ff;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        
-       
-        }
     </style>
 </head>
 <body>
     <br><br><br><br><br><br>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="confirmlogin.php" method="POST">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
-            <br><br>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-            <br><br>
-            <input type="submit" value="Entrar">
+        <form class="needs-validation" action="confirmlogin.php" method="POST" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Usuário:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+                <div class="valid-feedback">
+                    Preenchido!
+                </div>
+                <div class="invalid-feedback">
+                    Insira o nome de usuário!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Preenchido!
+                </div>
+                <div class="invalid-feedback">
+                    Insira a senha corretamente!
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary"
+                style="width: 25%;
+                background-color: #ff81ff;
+                color: #000000;
+                border: none;
+                border-radius: 7px;">
+                Entrar
+            </button>
         </form>
     </div>
+
+    <script>
+        (() => {
+            'use strict';
+
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
 </body>
 </html>
