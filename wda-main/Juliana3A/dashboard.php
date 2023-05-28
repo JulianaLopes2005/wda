@@ -12,9 +12,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/bootstrap.bundle.min.js"></script>
 
-<nav class="navbar navbar-expand-lg "  style="background-color: #ffc0cb;">
+<style>
+		.navbar-brand{
+			font-style: italic;
+			color: #ff98cd;
+		}
+		.nav-link{
+			color: #ffffff;
+		}
+</style>
+
+<nav class="navbar navbar-expand-lg "  style="background-color: #2A4080;">
 		<a class="navbar-brand" href="#">
-      		<img src="logotipo.png" alt="Bootstrap" width="90" height="72">
+      		<img src="logo.png" alt="Bootstrap" width="90" height="72">
     	</a>
           
        <div class="container-fluid">

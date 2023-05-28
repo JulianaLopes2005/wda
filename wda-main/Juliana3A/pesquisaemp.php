@@ -19,8 +19,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             font-family: Arial, sans-serif;
             margin: 0;
         }
-
-        h1 {
+        .pesquisaemp-container{
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #a6afff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
             margin-bottom: 20px;
         }
 
@@ -32,6 +39,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
         label {
             margin-bottom: 10px;
+            position: left;
         }
 
         input[type="text"] {
@@ -50,6 +58,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         }
 
         table {
+
             width: 100%;
             border-collapse: collapse;
         }
@@ -67,8 +76,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 </head>
 <body>
 	  <br><br>
-    <center>
-    <h1>Pesquisar Empréstimos</h1>
+    <div class="pesquisaemp-container">
+    <center><h2>Pesquisar Empréstimos</h2></center>
     <form action="" method="GET">
         <label for="variavel">Pesquisar por:</label>
         <select name="variavel" id="variavel">
@@ -81,7 +90,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
         <input type="submit" value="Pesquisar">
     </form><br>
-    </center>
+    </div>
     <?php
     // Verifica se o formulário foi enviado
     if (isset($_GET['variavel']) && isset($_GET['valor'])) {
@@ -102,7 +111,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
         // Verifica se foram encontrados empréstimos
         if (mysqli_num_rows($resultado_emprestimos) > 0) {
-            echo "<div class='container'><center><h2>Empréstimos encontrados:</h2></center><br>";
+            echo "<div class='container'><br><br><center><h2>Empréstimos encontrados:</h2></center><br>";
             echo "<table>";
             echo "<tr><th>ID</th><th>Livro</th><th>Usuário</th><th>Data de Empréstimo</th></tr>";
 

@@ -17,14 +17,27 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editoras</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+	<style>
+		.table-striped{
+			background: #E6E6FA;
+		}
+		.navbar-brand{
+			font-style: italic;
+			color: #ff98cd;
+		}
+		.nav-link{
+			color: #ffffff;
+		}
+	</style>
 </head>
 <body>
 
-
-<nav class="navbar navbar-expand-lg "  style="background-color: #ffc0cb;">
+<nav class="navbar navbar-expand-lg "  style="background-color: #2A4080;">
 
 		<a class="navbar-brand" href="#">
-      		<img src="logotipo.png" alt="Bootstrap" width="90" height="72">
+      		<img src="logo.png" alt="Bootstrap" width="90" height="72">
     	</a>
           
         <div class="container-fluid">
@@ -45,12 +58,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
           </div>
         </div>
       </nav>
-
+	  <br><br>
 <div class="container">
 <center><h1>Lista de Editoras</h1></center>
 	  <br>
 	  <a href="adicionareditora.php" type="button" class="btn btn-success">Adicionar Editora</a><br><br>
-	<table class="table">
+	<table class="table table-striped">
 		<tr>
 			<th>ID</th>
 			<th>Nome</th>

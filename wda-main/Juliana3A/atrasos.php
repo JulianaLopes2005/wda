@@ -16,14 +16,27 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <style>
+		.table-striped{
+			background: #E6E6FA;
+		}
+		.navbar-brand{
+			font-style: italic;
+			color: #ff98cd;
+		}
+		.nav-link{
+			color: #ffffff;
+		}
+	</style>
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg "  style="background-color: #2A4080;">
 
-<nav class="navbar navbar-expand-lg "  style="background-color: #ffc0cb;">
-
-      <a class="navbar-brand" href="#">
-      		<img src="logotipo.png" alt="Bootstrap" width="90" height="72">
+		<a class="navbar-brand" href="#">
+      		<img src="logo.png" alt="Bootstrap" width="90" height="72">
     	</a>
           
         <div class="container-fluid">
@@ -55,8 +68,8 @@ $resultado_emprestimos = mysqli_query($conn, $query_emprestimos);
 
 // Verifica se foram encontrados empréstimos em atraso
 if(mysqli_num_rows($resultado_emprestimos) > 0) {
-    echo "<div class='container'><h2>Empréstimos em atraso:</h2><br><br>";
-    echo "<table class='table'>";
+    echo "<div class='container'><center><h1>Empréstimos em atraso:</h1></center><br><br>";
+    echo "<table class='table table-striped'>";
     echo "<tr><th>ID</th><th>Livro</th><th>Usuário</th><th>Data de Empréstimo</th><th>Prazo de Entrega</th></tr>";
 
     // Exibe os dados dos empréstimos em atraso

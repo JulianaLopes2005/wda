@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         body {
-            background-image: url('fundo.jpg');
+            background-image: url('fundo.png');
             background-size: cover;
             background-repeat: no-repeat;
         }    
@@ -15,7 +15,7 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #ffd2cb;
+            background-color: #fecae1;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -23,12 +23,14 @@
         .login-container h2 {
             text-align: center;
             margin-bottom: 20px;
+            font-style: italic;
         }
         
         .login-container label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
+            font-style: italic;
+           
         }
         
         .login-container input[type="text"],
