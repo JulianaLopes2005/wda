@@ -5,16 +5,12 @@
     <title>Empréstimo</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-        }
 
         .loan-container {
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #a6afff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -25,7 +21,7 @@
         }
 
         .loan-container label {
-            font-weight: bold;
+            font-style: italic;
         }
 
         .loan-container select,
@@ -41,16 +37,13 @@
         .loan-container input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #ff81ff;
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
 
-        .loan-container input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>

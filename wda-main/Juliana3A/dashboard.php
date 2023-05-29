@@ -12,171 +12,185 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/bootstrap.bundle.min.js"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 		.navbar-brand{
 			font-style: italic;
 			color: #ff98cd;
+        ;
 		}
 		.nav-link{
 			color: #ffffff;
 		}
-</style>
+	</style>
 
+</head>
+<body>
 <nav class="navbar navbar-expand-lg "  style="background-color: #2A4080;">
+
 		<a class="navbar-brand" href="#">
       		<img src="logo.png" alt="Bootstrap" width="90" height="72">
     	</a>
           
-       <div class="container-fluid">
+        <div class="container-fluid">
           <a class="navbar-brand" href="index.html">LocadoraDreams</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-         </button>
+          </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link" href="usuarios.php">Usuários</a>
 			  <a class="nav-link" href="livros.php">Livros</a>
-			  <a class="nav-link " href="emprestimo.php">Empréstimos</a>
-			  <a class="nav-link " href="editora.php">Editoras</a>
-			  <a class="nav-link " href="atrasos.php">Atrasos</a>
+			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
+			  <a class="nav-link" href="editora.php">Editoras</a>
+			  <a class="nav-link" href="atrasos.php">Atrasos</a>
 			  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
-			  <a class="nav-link " href="logout.php">Sair</a>
+			  <a class="nav-link" href="logout.php">Sair</a>
             </div>
           </div>
         </div>
       </nav>
 	  <br><br>
 
-      <?php
-include_once('conexao.php');
+<?php
+// Inclui o arquivo de conexão com o banco de dados
+include 'conexao.php';
 
-// Quantidade de livros emprestados
-$query_emprestados = "SELECT COUNT(*) AS total_emprestados FROM emprestimos";
-$resultado_emprestados = mysqli_query($conn, $query_emprestados);
-$livros_emprestados = mysqli_fetch_assoc($resultado_emprestados)['total_emprestados'];
+// Consultar a quantidade de empréstimos de cada usuário
+$sql = "SELECT usuarios.nome, COUNT(emprestimos.id) AS quantidade
+        FROM usuarios
+        LEFT JOIN emprestimos ON usuarios.id = emprestimos.usuario_id
+        GROUP BY usuarios.id";
 
-// Quantidade de livros atrasados
-$query_atrasados = "SELECT COUNT(*) AS total_atrasados FROM emprestimos WHERE prazo_entrega < CURDATE()";
-$resultado_atrasados = mysqli_query($conn, $query_atrasados);
-$livros_atrasados = mysqli_fetch_assoc($resultado_atrasados)['total_atrasados'];
+$result = mysqli_query($conn, $sql);
 
-// Quantidade de livros devolvidos dentro do prazo
-$query_devolvidos_prazo = "SELECT COUNT(*) AS total_devolvidos_prazo FROM devolvidos WHERE prazo = 's'";
-$resultado_devolvidos_prazo = mysqli_query($conn, $query_devolvidos_prazo);
-$livros_devolvidos_prazo = mysqli_fetch_assoc($resultado_devolvidos_prazo)['total_devolvidos_prazo'];
+// Verificar se há resultados
+if (mysqli_num_rows($result) > 0) {
+    $userData = array();
+    $userData[] = ['Usuário', 'Quantidade de Empréstimos'];
 
-// Quantidade de livros devolvidos fora do prazo
-$query_devolvidos_fora_prazo = "SELECT COUNT(*) AS total_devolvidos_fora_prazo FROM devolvidos WHERE prazo = 'n'";
-$resultado_devolvidos_fora_prazo = mysqli_query($conn, $query_devolvidos_fora_prazo);
-$livros_devolvidos_fora_prazo = mysqli_fetch_assoc($resultado_devolvidos_fora_prazo)['total_devolvidos_fora_prazo'];
-
-// Quantidade de aluguéis por usuário
-$query_alugueis_por_usuario = "SELECT usuario_id, COUNT(*) AS total_alugueis FROM emprestimos GROUP BY usuario_id";
-$resultado_alugueis_por_usuario = mysqli_query($conn, $query_alugueis_por_usuario);
-$alugueis_por_usuario = array();
-while ($row = mysqli_fetch_assoc($resultado_alugueis_por_usuario)) {
-    $usuario_id = $row['usuario_id'];
-    $total_alugueis = $row['total_alugueis'];
-    $alugueis_por_usuario[$usuario_id] = $total_alugueis;
-}
-
-// Mais alugado
-$query_livro_mais_alugado = "SELECT livro_id, COUNT(*) AS total_alugueis FROM emprestimos GROUP BY livro_id ORDER BY total_alugueis DESC LIMIT 1";
-$resultado_livro_mais_alugado = mysqli_query($conn, $query_livro_mais_alugado);
-@$livro_mais_alugado_id = mysqli_fetch_assoc($resultado_livro_mais_alugado)['livro_id'];
-
-// Recupera o nome do livro + alugado
-$query_nome_livro_mais_alugado = "SELECT nome FROM livros WHERE id = $livro_mais_alugado_id";
-$resultado_nome_livro_mais_alugado = mysqli_query($conn, $query_nome_livro_mais_alugado);
-$livro_mais_alugado_nome = '';
-if ($resultado_nome_livro_mais_alugado) {
-    $livro_mais_alugado_nome = mysqli_fetch_assoc($resultado_nome_livro_mais_alugado)['nome'];
-}
-
-// Qtd de livros devolvidos
-$query_devolvidos = "SELECT COUNT(*) AS total_devolvidos FROM devolvidos";
-$resultado_devolvidos = mysqli_query($conn, $query_devolvidos);
-$livros_devolvidos = mysqli_fetch_assoc($resultado_devolvidos)['total_devolvidos'];
-
-// Exibe informações no dashboard
-echo "<br><div class='dashboard'>";
-echo "<center><h2>Dashboard</h2><br>";
-
-if (isset($livros_emprestados) && $livros_emprestados > 0) {
-    echo "<div class='widget primary'>";
-    echo "<p class='widget-title'>Quantidade de livros emprestados</p>";
-    echo "<p class='widget-value'><strong>$livros_emprestados</strong></p>";
-    echo "</div>";
-} else {
-    echo "<div class='widget'>";
-    echo "<p class='widget-title'>Não há livros emprestados.</p>";
-    echo "</div>";
-}
-
-if (isset($livros_atrasados) && $livros_atrasados > 0) {
-    echo "<div class='widget warning'>";
-    echo "<p class='widget-title'>Quantidade de livros atrasados</p>";
-    echo "<p class='widget-value'><strong>$livros_atrasados</strong></p>";
-    echo "</div>";
-} else {
-    echo "<div class='widget'>";
-    echo "<p class='widget-title'>Não há livros atrasados.</p>";
-    echo "</div>";
-}
-
-if (isset($livros_devolvidos_prazo) && $livros_devolvidos_prazo > 0) {
-    echo "<div class='widget success'>";
-    echo "<p class='widget-title'>Quantidade de livros devolvidos dentro do prazo</p>";
-    echo "<p class='widget-value'><strong>$livros_devolvidos_prazo</strong></p>";
-    echo "</div>";
-} else {
-    echo "<div class='widget'>";
-    echo "<p class='widget-title'>Não há livros devolvidos no prazo</p>";
-    echo "</div>";
-}
-
-if (isset($livros_devolvidos_fora_prazo) && $livros_devolvidos_fora_prazo > 0) {
-    echo "<div class='widget error'>";
-    echo "<p class='widget-title'>Quantidade de livros devolvidos fora do prazo</p>";
-    echo "<p class='widget-value'><strong>$livros_devolvidos_fora_prazo</strong></p>";
-    echo "</div>";
-} else {
-    echo "<div class='widget'>";
-    echo "<p class='widget-title'>Não há livros devolvidos fora do prazo</p>";
-    echo "</div>";
-}
-
-echo "<div class='widget'>";
-echo "<h3 class='widget-subtitle'>Quantidade de aluguéis por usuário</h3>";
-if (!empty($alugueis_por_usuario)) {
-    foreach ($alugueis_por_usuario as $usuario_id => $total_alugueis) {
-        echo "<p class='widget-item'>Usuário ID $usuario_id: <strong>$total_alugueis</strong> aluguéis</p>";
+    // Obter os dados do resultado da consulta
+    while ($row = mysqli_fetch_assoc($result)) {
+        $userName = $row['nome'];
+        $loanQuantity = (int)$row['quantidade'];
+        $userData[] = [$userName, $loanQuantity];
     }
-} else {
-    echo "<p class='widget-title'>Não há informações disponíveis.</p>";
-}
-echo "</div>";
 
-echo "<div class='widget utilitary'>";
-echo "<h3 class='widget-subtitle'>Livro mais alugado</h3>";
-if (!empty($livro_mais_alugado_nome)) {
-    echo "<p class='widget-value'><strong>$livro_mais_alugado_nome</strong></p>";
+    // Converter os dados para o formato esperado pelo gráfico
+    $userDataJson = json_encode($userData);
 } else {
-    echo "<p class='widget-title'>Não há informações disponíveis.</p>";
-}
-echo "</div>";
-
-if (isset($livros_devolvidos) && $livros_devolvidos > 0) {
-    echo "<div class='widget'>";
-    echo "<h3 class='widget-title'>Quantidade de livros devolvidos</h3>";
-    echo "<p class='widget-value'><strong>$livros_devolvidos</strong></p>";
-    echo "</div>";
-} else {
-    echo "<div class='widget'>";
-    echo "<p class='widget-title'>Não há livros devolvidos.</p>";
-    echo "</div>";
+    // Caso não haja empréstimos registrados, definir os dados como vazios
+    $userDataJson = "[['Nenhum usuário', 0]]";
 }
 
-echo "</center></div>";
+// Consultar a quantidade de empréstimos de cada livro
+$sql = "SELECT livros.nome, COUNT(emprestimos.id) AS quantidade
+        FROM livros
+        LEFT JOIN emprestimos ON livros.id = emprestimos.livro_id
+        GROUP BY livros.id";
+
+$result = mysqli_query($conn, $sql);
+
+// Verificar se há resultados
+if (mysqli_num_rows($result) > 0) {
+    $bookData = array();
+    $bookData[] = ['Livro', 'Quantidade de Empréstimos'];
+
+    // Obter os dados do resultado da consulta
+    while ($row = mysqli_fetch_assoc($result)) {
+        $bookName = $row['nome'];
+        $loanQuantity = (int)$row['quantidade'];
+        $bookData[] = [$bookName, $loanQuantity];
+    }
+
+    // Converter os dados para o formato esperado pelo gráfico
+    $bookDataJson = json_encode($bookData);
+} else {
+    // Caso não haja empréstimos registrados, definir os dados como vazios
+    $bookDataJson = "[['Nenhum livro', 0]]";
+}
+
+// Fechar conexão
+mysqli_close($conn);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart']});
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            var userData = <?php echo $userDataJson; ?>;
+            var bookData = <?php echo $bookDataJson; ?>;
+
+            drawUserChart(userData);
+            drawBookChart(bookData);
+        }
+
+        function drawUserChart(userData) {
+    var data = google.visualization.arrayToDataTable(userData);
+
+    var options = {
+        title: 'Quantidade de Empréstimos por Usuário',
+        hAxis: {title: 'Usuário', minValue: 0},
+        vAxis: {title: 'Quantidade de Empréstimos', minValue: 0, format: '0'},
+        chartArea: {width: '80%', height: '70%'},
+        legend: 'none'
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('userChart'));
+    chart.draw(data, options);
+}
+        function drawBookChart(bookData) {
+            var data = google.visualization.arrayToDataTable(bookData);
+
+            var options = {
+                title: 'Livros Mais Emprestados',
+                is3D: true,
+                chartArea: {width: '80%', height: '50%'},
+                legend: 'none'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('bookChart'));
+            chart.draw(data, options);
+        }
+    </script>
+    <style>
+        .card {
+    width: 90%;
+    height: 550px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+    margin-bottom: 20px;
+            }
+
+            .card-container {
+                padding-left: 150px;
+                display: flex;
+                flex-wrap: wrap;
+            }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+                <div class="card">
+                    <div id="userChart" style="width: 100%; height: 100%;"></div>
+                </div>
+                <div class="card">
+                    <div id="bookChart" style="width: 100%; height: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
 
 

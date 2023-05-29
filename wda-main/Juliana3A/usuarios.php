@@ -64,7 +64,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <div class="container">
 <center><h1>Lista de Usuários</h1></center>
 	  <br>
-	  <a href="adicionar.php" type="button" class="btn btn-success">Adicionar Usuário</a><br><br>
+	  <a href="adicionar.php" type="button" class="btn btn-success">Adicionar Usuário</a> -
+	  <a href="pesquisausuario.php" type="button" class="btn btn-success">Pesquisar Usuário </a><br><br>
 	  <table class="table table-striped">
 		<tr>
 			<th>ID</th>

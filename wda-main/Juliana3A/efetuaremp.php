@@ -30,8 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usuarioResult = mysqli_query($conn, $usuarioQuery);
         $usuarioNome = mysqli_fetch_assoc($usuarioResult)['nome'];
 
-        // TODO: Realizar a lógica de empréstimo, como inserir os dados na tabela de empréstimos
-
         // Exemplo: Inserir os dados em uma tabela "emprestimos"
         $insertQuery = "INSERT INTO emprestimos (livro_id, livro_nome, usuario_id, usuario_nome, prazo_entrega) VALUES ('$livroId', '$livroNome', '$usuarioId', '$usuarioNome', '$prazo')";
         if (mysqli_query($conn, $insertQuery)) {

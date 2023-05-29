@@ -79,7 +79,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			// Consultar usuários
 			$sql = "SELECT * FROM emprestimos";
 			$result = mysqli_query($conn, $sql);
-			// Exibir resultados
+			
 			//Se tiver mais de um registro
 			if (mysqli_num_rows($result) > 0) {
 				while ($row = mysqli_fetch_assoc($result)) {

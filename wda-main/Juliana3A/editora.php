@@ -62,7 +62,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <div class="container">
 <center><h1>Lista de Editoras</h1></center>
 	  <br>
-	  <a href="adicionareditora.php" type="button" class="btn btn-success">Adicionar Editora</a><br><br>
+	  <a href="adicionareditora.php" type="button" class="btn btn-success">Adicionar Editora</a> -
+	  <a href="pesquisaeditora.php" type="button" class="btn btn-success">Pesquisar Editora</a><br><br>
 	<table class="table table-striped">
 		<tr>
 			<th>ID</th>

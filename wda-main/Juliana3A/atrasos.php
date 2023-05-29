@@ -80,7 +80,7 @@ if(mysqli_num_rows($resultado_emprestimos) > 0) {
         echo "<td>".$row['usuario_nome']."</td>";
         echo "<td>".$row['data_emprestimo']."</td>";
         echo "<td>".$row['prazo_entrega']."</td>";
-        echo "<td><a href='devolucaolivro.php?id=".$row["id"]."' class='btn btn-info'>Devolução</a></td>";
+        echo "<td><a href='devolucaolivro.php?id=".$row["id"]."'class='btn btn-info'>Devolução</a></td>";
         echo "</tr>";
     }
 
