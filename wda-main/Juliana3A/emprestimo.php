@@ -89,7 +89,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 					echo "<td>".$row["livro_nome"]."</td>";
 					echo "<td>".$row["usuario_id"]."</td>";
 					echo "<td>".$row["usuario_nome"]."</td>";
-					echo "<td>".$row["prazo_entrega"]."</td>";
+					echo "<td>".formatarData($row["prazo_entrega"])."</td>";
 					echo "<td><a href='devolucaolivro.php?id=".$row["id"]."' class='btn btn-info'>Devolução</a></td>";
 					echo "</tr>";
 
@@ -100,6 +100,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			}
 			// Fechar conexão
 			mysqli_close($conn);
+
+			function formatarData($data) {
+                return date("d/m/Y", strtotime($data));
+                }
 		?>
 	</table>
 	</div>
