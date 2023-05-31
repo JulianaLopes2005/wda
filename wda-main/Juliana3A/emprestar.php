@@ -18,6 +18,7 @@
         .loan-container h2 {
             text-align: center;
             margin-bottom: 20px;
+            font-style: italic;
         }
 
         .loan-container label {
@@ -44,9 +45,43 @@
             cursor: pointer;
         }
 
+        .navbar-brand{
+			font-style: italic;
+			color: #ff98cd;
+		}
+		.nav-link{
+			color: #ffffff;
+		}
+
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg "  style="background-color: #2A4080;">
+
+<a class="navbar-brand" href="#">
+	  <img src="logo.png" alt="Bootstrap" width="90" height="72">
+</a>
+  
+<div class="container-fluid">
+  <a class="navbar-brand" href="index.html">LocadoraDreams</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	<div class="navbar-nav">
+	  <a class="nav-link" href="usuarios.php">Usuários</a>
+	  <a class="nav-link" href="livros.php">Livros</a>
+	  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
+	  <a class="nav-link" href="editora.php">Editoras</a>
+	  <a class="nav-link" href="atrasos.php">Atrasos</a>
+	  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
+	  <a class="nav-link " href="logout.php">Sair</a>
+	</div>
+  </div>
+</div>
+</nav>
+
+
     <?php
         include 'conexao.php';
 

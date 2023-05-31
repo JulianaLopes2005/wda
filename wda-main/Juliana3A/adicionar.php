@@ -18,7 +18,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 	<title>Página do Administrador de Cadastro</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <title>Formulário</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <style>
      
 
@@ -29,6 +29,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             background-color: #a6afff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            font-style: italic;
         }
 
         .form-group {
@@ -59,12 +60,45 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             border: none;
             cursor: pointer;
         }
-
         
+        .navbar-brand{
+			font-style: italic;
+			color: #ff98cd;
+		}
+        
+		.nav-link{
+			color: #ffffff;
+		}
 
     </style>
 </head>
-<body><br><br><br><br>
+<body>
+<nav class="navbar navbar-expand-lg "  style="background-color: #2A4080;">
+
+<a class="navbar-brand" href="#">
+	  <img src="logo.png" alt="Bootstrap" width="90" height="72">
+</a>
+  
+<div class="container-fluid">
+  <a class="navbar-brand" href="index.html">LocadoraDreams</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	<div class="navbar-nav">
+	  <a class="nav-link" href="usuarios.php">Usuários</a>
+	  <a class="nav-link" href="livros.php">Livros</a>
+	  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
+	  <a class="nav-link" href="editora.php">Editoras</a>
+	  <a class="nav-link" href="atrasos.php">Atrasos</a>
+	  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
+	  <a class="nav-link " href="logout.php">Sair</a>
+	</div>
+  </div>
+</div>
+</nav>
+
+<br><br>
     <div class="container">
 		<center><h2>Cadastro de Usuário</h2></center>
         <form action="add.php" method="post" accept-charset="utf-8" class="form-group" onsubmit="return validateForm()">

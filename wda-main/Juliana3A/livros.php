@@ -59,7 +59,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
       </nav>
 	  <br><br>
-      <center><h1>Lista de Livros</h1></center><br><br>
+      <center><h1>Lista de Livros</h1></center><br>
 	<div class="container">
 	<a href="cadastrolivros.php" type="button" class="btn btn-success">Adicionar Livros</a><br><br>
 	<table class="table table-striped">
@@ -88,7 +88,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 				echo "<td>".$row["nome"]."</td>";
 				echo "<td>".$row["autor"]."</td>";
 				echo "<td>".$row["editora"]."</td>";
-				echo "<td>".formatarData($row["datalanc"])."</td>";
+				echo "<td>".$row["datalanc"]."</td>";
 				echo "<td>".$row["estoque"]."</td>";
 				echo "<td><a href='editarlivros.php?id=".$row["id"]."' class='btn btn-warning'>Editar</a> | <a href='excluirlivro.php?id=".$row["id"]."' class='btn btn-danger'>Excluir</a></td>";
 				echo "</tr>";
@@ -98,10 +98,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 			// Fecha a conexão com o banco de dados
 			$conn->close();
-
-			function formatarData($data) {
-                return date("d/m/Y", strtotime($data));
-                }
 		?>
 	</table>
 	</div>

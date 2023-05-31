@@ -30,6 +30,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		.nav-link{
 			color: #ffffff;
 		}
+
+		.d-flex{
+			width: 20%;
+			height: 0%;
+			position: right;
+			
+
+		}
 	</style>
 	
 </head>
@@ -65,7 +73,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <center><h1>Lista de Usuários</h1></center>
 	  <br>
 	  <a href="adicionar.php" type="button" class="btn btn-success">Adicionar Usuário</a> -
-	  <a href="pesquisausuario.php" type="button" class="btn btn-success">Pesquisar Usuário </a><br><br>
+	  <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
 	  <table class="table table-striped">
 		<tr>
 			<th>ID</th>

@@ -80,7 +80,6 @@ if (mysqli_num_rows($result) > 0) {
     // Converter os dados para o formato esperado pelo gráfico
     $userDataJson = json_encode($userData);
 } else {
-    // Caso não haja empréstimos registrados, definir os dados como vazios
     $userDataJson = "[['Nenhum usuário', 0]]";
 }
 
