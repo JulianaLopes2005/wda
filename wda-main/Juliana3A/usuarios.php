@@ -32,11 +32,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		}
 
 		.d-flex{
-			width: 20%;
-			height: 0%;
-			position: right;
-			
+			width: 25%;
+			height: 2rem;
+			float: right;
+		}
 
+		.btn-bg{
+			padding: 10px 20px;
+            font-size: 12px;
+            border-radius: 4px;
+            background-color: #ff81ff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
 		}
 	</style>
 	
@@ -72,15 +80,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <div class="container">
 <center><h1>Lista de Usuários</h1></center>
 	  <br>
-	  <a href="adicionar.php" type="button" class="btn btn-success">Adicionar Usuário</a> -
-	  <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+	  <a href="adicionar.php" type="button" class="btn btn-success">Adicionar Usuário</a> 
+	  <div class="pesquisa">
+    <form class="d-flex" method="GET">
+	<input class="form-control me-2" type="search" name="search" placeholder="pesquisar..." aria-label="search">
+	 	  <select name="filter">
+				<option value="id">ID</option>
+				<option value="nome">Nome</option>
+				<option value="email">Email</option>
+				<option value="celular">Celular</option>
+				<option value="endereco">Endereço</option>
+				<option value="cpf">CPF</option>
+		  </select>
+	<button class="btn-bg" type="submit">Pesquisar</button>
     </form>
-  </div>
-</nav>
+	</div>
+
+<br><br>
 	  <table class="table table-striped">
 		<tr>
 			<th>ID</th>
@@ -93,10 +109,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		</tr>
 		<?php
 			include 'conexao.php'; 
-			// Consultar usuários
-			$sql = "SELECT * FROM usuarios";
+
+			if (isset($_GET['search']) && isset($_GET['filter'])) {
+                $search = $_GET['search'];
+                $filter = $_GET['filter'];
+                $sql = "SELECT * FROM usuarios WHERE $filter LIKE '%$search%' ORDER BY nome ASC";
+            } else {
+                // Consultar usuários sem critérios de pesquisa
+                $sql = "SELECT * FROM usuarios ORDER BY nome ASC";
+            }
+
 			$result = mysqli_query($conn, $sql);
-			// Exibir resultados
+			
 			//Se tiver mais de um registro
 			if (mysqli_num_rows($result) > 0) {
 				while ($row = mysqli_fetch_assoc($result)) {

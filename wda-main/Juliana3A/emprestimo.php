@@ -23,12 +23,30 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		.table-striped{
 			background: #E6E6FA;
 		}
+
 		.navbar-brand{
 			font-style: italic;
 			color: #ff98cd;
 		}
+
 		.nav-link{
 			color: #ffffff;
+		}
+
+		.d-flex{
+			width: 25%;
+			height: 2rem;
+			float: right;
+		}
+
+		.btn-bg{
+			padding: 10px 20px;
+            font-size: 12px;
+            border-radius: 4px;
+            background-color: #ff81ff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
 		}
 	</style>
 </head>
@@ -62,8 +80,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <div class="container">
 
 <center><h1>Lista de Empréstimos</h1></center>
-<a href="pesquisaemp.php" type="button" class="btn btn-success">Pesquisar empréstimos</a> -
 <a href="emprestar.php" type="button" class="btn btn-success">Efetuar empréstimos</a><br><br>
+<div class="pesquisa">
+    <form class="d-flex" method="GET">
+	<input class="form-control me-2" type="search" name="search" placeholder="pesquisar..." aria-label="search">
+	 	  <select name="filter">
+				<option value="id">ID</option>
+				<option value="livro_id">Livro ID</option>
+				<option value="livro_nome">Nome do Livro</option>
+				<option value="usuario_id">ID do Usuário</option>
+				<option value="usuario_nome">Nome do Usuário</option>
+		  </select>
+	<button class="btn-bg" type="submit">Pesquisar</button>
+    </form>
+	</div>
+
+
+
       <table class= "table table-striped">
 		<tr>
 			<th>ID</th>
@@ -76,8 +109,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		</tr>
 		<?php
 			include 'conexao.php'; 
-			// Consultar usuários
-			$sql = "SELECT * FROM emprestimos";
+			if (isset($_GET['search']) && isset($_GET['filter'])) {
+                $search = $_GET['search'];
+                $filter = $_GET['filter'];
+                $sql = "SELECT * FROM emprestimos WHERE $filter LIKE '%$search%' ORDER BY nome ASC";
+            } else {
+                // Consultar usuários sem critérios de pesquisa
+                $sql = "SELECT * FROM emprestimos ORDER BY nome ASC";
+            }
+
 			$result = mysqli_query($conn, $sql);
 			
 			//Se tiver mais de um registro
