@@ -34,19 +34,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		}
 
 		.d-flex{
-			width: 25%;
+			width: 28%;
 			height: 2rem;
 			float: right;
+			margin: 5px;
 		}
 
 		.btn-bg{
-			padding: 10px 20px;
-            font-size: 12px;
+            font-size: 14px;
             border-radius: 4px;
             background-color: #ff81ff;
             color: #ffffff;
             border: none;
             cursor: pointer;
+			margin-left: 5px;
 		}
 	</style>
 </head>
@@ -69,7 +70,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			  <a class="nav-link" href="livros.php">Livros</a>
               <a class="nav-link" href="emprestimo.php">Empréstimos</a>
 			  <a class="nav-link" href="editora.php">Editoras</a>
-			  <a class="nav-link" href="atrasos.php">Atrasos</a>
 			  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
 			  <a class="nav-link " href="logout.php">Sair</a>
             </div>
@@ -105,17 +105,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			<th>ID do Usuário</th>
 			<th>Nome do Usuário</th>
 			<th>Prazo de Entrega</th>
-			<th></th>
+			<th>Status</th>
+			<th>Ação</th>
+	
 		</tr>
 		<?php
 			include 'conexao.php'; 
 			if (isset($_GET['search']) && isset($_GET['filter'])) {
                 $search = $_GET['search'];
                 $filter = $_GET['filter'];
-                $sql = "SELECT * FROM emprestimos WHERE $filter LIKE '%$search%' ORDER BY nome ASC";
+                $sql = "SELECT * FROM emprestimos WHERE $filter LIKE '%$search%' ORDER BY usuario_nome ASC";
             } else {
                 // Consultar usuários sem critérios de pesquisa
-                $sql = "SELECT * FROM emprestimos ORDER BY nome ASC";
+                $sql = "SELECT * FROM emprestimos ORDER BY usuario_nome ASC";
             }
 
 			$result = mysqli_query($conn, $sql);
@@ -129,9 +131,22 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 					echo "<td>".$row["livro_nome"]."</td>";
 					echo "<td>".$row["usuario_id"]."</td>";
 					echo "<td>".$row["usuario_nome"]."</td>";
-					echo "<td>".$row["prazo_entrega"]."</td>";
+					echo "<td>" .formatarData($row["prazo_entrega"]). "</td>";
+					$dataAtual = date('Y-m-d');
+                        $prazoEntrega = $row["prazo_entrega"];
+                        $status = "";
+                        
+                        if ($prazoEntrega < $dataAtual) {
+                            $status = "Atrasado";
+                            echo "<td class='table-danger'>$status</td>";
+                        } else {
+                            $status = "Dentro do prazo";
+                            echo "<td class='table-success'>$status</td>";
+                        }
 					echo "<td><a href='devolucaolivro.php?id=".$row["id"]."' class='btn btn-info'>Devolução</a></td>";
 					echo "</tr>";
+
+                        
 
 
 				}
@@ -140,6 +155,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			}
 			// Fechar conexão
 			mysqli_close($conn);
+
+			function formatarData($data) {
+                return date("d/m/Y", strtotime($data));
+                }
 		?>
 	</table>
 	</div>

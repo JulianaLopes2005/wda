@@ -23,12 +23,31 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		.table-striped{
 			background: #E6E6FA;
 		}
+
 		.navbar-brand{
 			font-style: italic;
 			color: #ff98cd;
 		}
+
 		.nav-link{
 			color: #ffffff;
+		}
+
+		.d-flex{
+			width: 25%;
+			height: 2rem;
+			float: right;
+			margin: 5px;
+		}
+
+		.btn-bg{
+            font-size: 14px;
+            border-radius: 4px;
+            background-color: #ff81ff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+			margin-left: 5px;
 		}
 	</style>
 </head>
@@ -51,7 +70,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			  <a class="nav-link" href="livros.php">Livros</a>
 			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
 			  <a class="nav-link" href="editora.php">Editoras</a>
-			  <a class="nav-link" href="atrasos.php">Atrasos</a>
 			  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
 			  <a class="nav-link" href="logout.php">Sair</a>
             </div>
@@ -62,8 +80,21 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 <div class="container">
 <center><h1>Lista de Editoras</h1></center>
 	  <br>
-	  <a href="adicionareditora.php" type="button" class="btn btn-success">Adicionar Editora</a> -
-	  <a href="pesquisaeditora.php" type="button" class="btn btn-success">Pesquisar Editora</a><br><br>
+	  <a href="adicionareditora.php" type="button" class="btn btn-success">Adicionar Editora</a>
+	  <div class="pesquisa">
+    <form class="d-flex" method="GET">
+	<input class="form-control me-2" type="search" name="search" placeholder="pesquisar..." aria-label="search">
+	 	  <select name="filter">
+				<option value="id">ID</option>
+				<option value="nome_editora">Nome</option>
+				<option value="email_editora">Email</option>
+				<option value="telefone">Telefone</option>
+				<option value="site_editora">Site</option>
+		  </select>
+	<button class="btn-bg" type="submit">Pesquisar</button>
+    </form>
+	</div>
+
 	<table class="table table-striped">
 		<tr>
 			<th>ID</th>
@@ -75,8 +106,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		</tr>
 		<?php
 			include 'conexao.php'; 
-			// Consultar usuários
-			$sql = "SELECT * FROM editora";
+			
+			if (isset($_GET['search']) && isset($_GET['filter'])) {
+                $search = $_GET['search'];
+                $filter = $_GET['filter'];
+                $sql = "SELECT * FROM editora WHERE $filter LIKE '%$search%' ORDER BY nome_editora ASC";
+            } else {
+                // Consultar usuários sem critérios de pesquisa
+                $sql = "SELECT * FROM editora ORDER BY nome_editora ASC";
+            }
+
+			$result = mysqli_query($conn, $sql);
+
 			$result = mysqli_query($conn, $sql);
 			// Exibir resultados
 			//Se tiver mais de um registro
