@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Empréstimo</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
 
         .loan-container {
@@ -63,6 +64,7 @@
         ?> 
         <br><br><br><br>
     <div class="loan-container">
+    <a href="emprestimo.php"><i style="font-size:24px" class="fa">&#xf00d;</i></a>
         <h2>Empréstimo</h2>
         <form id="loan-form" action="efetuaremp.php" method="POST">
             <label for="livro">Livro:</label>

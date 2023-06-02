@@ -18,6 +18,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 	<title>Página do Cadastro de Livros</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<style>
 		.container {
@@ -46,9 +47,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 <br><br>
 	<div class="row">
+	
 		<div class="container">
 			<div class="panel panel-default">
 				<div class="panel-body">
+				<a href="livros.php"><i style="font-size:24px" class="fa">&#xf00d;</i></a>
 					<div class="panel-heading display-6 text-center">Cadastro de Livros</div>
     					<form action="funcadastrolivro.php" method="post" accept-charset="utf-8" class="form-group">
 

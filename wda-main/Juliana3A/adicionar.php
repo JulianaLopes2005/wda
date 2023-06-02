@@ -19,6 +19,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
      
 
@@ -67,6 +68,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 <br><br>
     <div class="container">
+    <a href="usuarios.php"><i style="font-size:24px" class="fa">&#xf00d;</i></a>
 		<center><h2>Cadastro de Usuário</h2></center>
         <form action="add.php" method="post" accept-charset="utf-8" class="form-group" onsubmit="return validateForm()">
             <label for="nome">Nome:</label>

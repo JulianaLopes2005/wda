@@ -20,6 +20,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<style>
 		.container {
@@ -52,6 +53,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 		<div class="container col-sm-6">
 			<div class="panel panel-default">
 				<div class="panel-body">
+				<a href="editora.php"><i style="font-size:24px" class="fa">&#xf00d;</i></a>
 					<div class="panel-heading display-6 text-center">Cadastro de Editoras</div>
     					<form action="addeditora.php" method="post" accept-charset="utf-8" class="form-group">
 
