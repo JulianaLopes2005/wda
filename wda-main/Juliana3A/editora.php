@@ -24,15 +24,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 			background: #E6E6FA;
 		}
 
-		.navbar-brand{
-			font-style: italic;
-			color: #ff98cd;
-		}
-
-		.nav-link{
-			color: #ffffff;
-		}
-
 		.d-flex{
 			width: 25%;
 			height: 2rem;
@@ -60,18 +51,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     	</a>
           
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">LocadoraDreams</a>
+          <a class="navbar-brand" href="index.html" style="font-style: italic;
+			color: #ff98cd;">LocadoraDreams</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link" href="usuarios.php">Usuários</a>
-			  <a class="nav-link" href="livros.php">Livros</a>
-			  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
-			  <a class="nav-link" href="editora.php">Editoras</a>
-			  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
-			  <a class="nav-link" href="logout.php">Sair</a>
+              <a class="nav-link" href="usuarios.php" style="color: #ffffff">Usuários</a>
+			  <a class="nav-link" href="livros.php" style="color: #ffffff">Livros</a>
+			  <a class="nav-link" href="emprestimo.php" style="color: #ffffff">Empréstimos</a>
+			  <a class="nav-link" href="editora.php" style="color: #ffffff">Editoras</a>
+			  <a class="nav-link " href="dashboard.php" class="dashboard-button" style="color: #ffffff">Dashboard</a>
+			  <a class="nav-link " href="logout.php" style="color: #ffffff">Sair</a>
             </div>
           </div>
         </div>

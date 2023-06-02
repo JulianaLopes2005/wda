@@ -16,7 +16,7 @@ function deleteLivro($livroId) {
         return false;
     } else {
         // Deleta o livro do banco de dados
-        $query_delete_livro = "DELETE FROM livros WHERE id = $livroId";
+        $query_delete_livro = "DELETE FROM livros AND id = $livroId";
         mysqli_query($conn, $query_delete_livro);
 
         mysqli_close($conn);

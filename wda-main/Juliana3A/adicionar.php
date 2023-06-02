@@ -51,7 +51,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         }
 
        
-        .btn {
+        .btn-bg {
             padding: 10px 20px;
             font-size: 14px;
             border-radius: 4px;
@@ -60,43 +60,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             border: none;
             cursor: pointer;
         }
-        
-        .navbar-brand{
-			font-style: italic;
-			color: #ff98cd;
-		}
-        
-		.nav-link{
-			color: #ffffff;
-		}
 
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg "  style="background-color: #2A4080;">
-
-<a class="navbar-brand" href="#">
-	  <img src="logo.png" alt="Bootstrap" width="90" height="72">
-</a>
-  
-<div class="container-fluid">
-  <a class="navbar-brand" href="index.html">LocadoraDreams</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-	<span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	<div class="navbar-nav">
-	  <a class="nav-link" href="usuarios.php">Usuários</a>
-	  <a class="nav-link" href="livros.php">Livros</a>
-	  <a class="nav-link" href="emprestimo.php">Empréstimos</a>
-	  <a class="nav-link" href="editora.php">Editoras</a>
-	  <a class="nav-link" href="atrasos.php">Atrasos</a>
-	  <a class="nav-link " href="dashboard.php" class="dashboard-button">Dashboard</a>
-	  <a class="nav-link " href="logout.php">Sair</a>
-	</div>
-  </div>
-</div>
-</nav>
 
 <br><br>
     <div class="container">
@@ -122,7 +89,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <input type="text" id="cpf" name="cpf" class="form-control">
             
             <br><br>
-            <input type="submit" name="btn" value="Cadastrar" class="btn">
+            <input type="submit" name="btn" value="Cadastrar" class="btn-bg">
             <script>
             $(document).ready(function() {
                     $('#cpf').mask('000.000.000-00');
